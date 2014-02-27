@@ -151,7 +151,7 @@
         if ( typeof options === "string" ) {
             options = { content: options };
         }
-
+        options.onClose = options.onClose || function(){};
         // Returns a named option if it has been explicitly defined. Otherwise,
         // it returns the given default value
         function getOption ( opt, defaultValue ) {
@@ -190,6 +190,7 @@
             closeCallbacks.trigger();
             shadow.destroy();
             elem.destroy();
+            options.onClose();
         };
 
         if ( getOption('overlayClose', true) ) {
